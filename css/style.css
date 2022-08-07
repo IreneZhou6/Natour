@@ -41,18 +41,21 @@ body {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-
+    text-align: center;
 }
 
 .heading-primary {
     width: 100%;
     height: 100%;
+    margin-bottom: 60px;
     /* display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center; */
     color: #fff;
     text-transform: uppercase;
+    backface-visibility: hidden;
+    /* 为了消除动画结束时的小闪动，实际上我没有观察到这个问题 */
 }
 
 .heading-primary-main {
@@ -60,6 +63,8 @@ body {
     font-size: 60px;
     font-weight: 400;
     letter-spacing: 35px;
+    animation-name: moveInLeft;
+    animation-duration: 1s;
 }
 
 .heading-primary-sub {
@@ -67,4 +72,51 @@ body {
     font-size: 20px;
     font-weight: 700;
     letter-spacing: 15px;
+    animation: moveInRight 1s ease-out;
+    /* 简写形式animation */
+}
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    80% {
+        transform: translateX(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    80% {
+        transform: translateX(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.btn:link,
+.btn:visited {
+    display: inline-block;
+    padding: 15px 40px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.btn-white {
+    background-color: #fff;
+    color: #777;
 }
