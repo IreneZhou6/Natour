@@ -30,6 +30,7 @@ body {
     position: absolute;
     top: 40px;
     left: 40px;
+    /* 此处用padding效果也一样 */
 }
 
 .logo {
@@ -108,15 +109,67 @@ body {
     }
 }
 
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 .btn:link,
 .btn:visited {
+    position: relative;
     display: inline-block;
     padding: 15px 40px;
     text-transform: uppercase;
     text-decoration: none;
+    border-radius: 100px;
+    transition: all .2s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, .2);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 8px rgba(0, 0, 0, .2);
 }
 
 .btn-white {
     background-color: #fff;
     color: #777;
+}
+
+.btn::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    content: '';
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    z-index: -1;
+    transition: all .4s;
+}
+
+.btn-white::after {
+    background-color: #fff;
+}
+
+.btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+.btn-animated {
+    animation: moveInBottom .5s ease-out .75s;
+    animation-fill-mode: backwards;
 }
